@@ -1,0 +1,13 @@
+{
+    "size": 10,
+    "index": "allegations",
+    "body": {
+        "query": {
+            "bool": {
+                "must": [],
+                "should":[],
+                "must_not":[]
+            }
+        }
+    }
+}

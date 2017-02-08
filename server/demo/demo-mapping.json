@@ -1,0 +1,131 @@
+{
+    "Allegation": {
+      "properties": {
+        "ref": {
+          "analyzer": "standard",
+          "type": "integer"
+        },
+        "dateReceived": {
+          "analyzer": "standard",
+          "type": "date"
+        },
+        "dateOpened": {
+          "analyzer": "standard",
+          "type": "date"
+        },
+        "linkToCaseFile": {
+          "analyzer": "standard",
+          "type": "string"
+        },
+        "currentSituation": {
+          "analyzer": "standard",
+          "type": "string"
+        },
+        "child_surname": {
+          "analyzer": "standard",
+          "type": "string"
+        },
+        "child_firstName": {
+          "analyzer": "standard",
+          "type": "string"
+        },
+        "child_DOB": {
+          "analyzer": "standard",
+          "type": "date"
+        },
+        "child_gender": {
+          "analyzer": "standard",
+          "type": "string"
+        },
+        "child_ethnicity": {
+          "analyzer": "standard",
+          "type": "string"
+        },
+        "child_numOfChildrenInvolved": {
+          "analyzer": "standard",
+          "type": "integer"
+        },
+        "child_numOfPreviousAllegations": {
+          "analyzer": "standard",
+          "type": "integer"
+        },
+        "staff_numOfProfsInvolved": {
+          "analyzer": "standard",
+          "type": "string"
+        },
+        "staff_surname": {
+          "analyzer": "standard",
+          "type": "string"
+        },
+        "staff_firstName": {
+          "analyzer": "standard",
+          "type": "string"
+        },
+        "staff_DOB": {
+          "analyzer": "standard",
+          "type": "date"
+        },
+        "staff_gender": {
+          "analyzer": "standard",
+          "type": "string"
+        },
+        "staff_ethnicity": {
+          "analyzer": "standard",
+          "type": "string"
+        },
+        "staff_f": {
+          "analyzer": "standard",
+          "type": "string"
+        },
+        "staff_placeOfEmployment": {
+          "analyzer": "standard",
+          "type": "string"
+        },
+        "staff_numOfPreviousAllegations": {
+          "analyzer": "standard",
+          "type": "integer"
+        },
+        "allegation_cat": {
+          "analyzer": "standard",
+          "type": "string"
+        },
+        "allegation_summary": {
+          "analyzer": "standard",
+          "type": "string"
+        },
+        "allegation_strategyMeeting": {
+          "analyzer": "standard",
+          "type": "boolean"
+        },
+        "allegation_outcome": {
+          "analyzer": "standard",
+          "type": "string"
+        },
+        "allegation_investigation": {
+          "analyzer": "standard",
+          "type": "string"
+        },
+        "allegation_other": {
+          "analyzer": "standard",
+          "type": "string"
+        },
+        "allegation_closeDate": {
+          "analyzer": "standard",
+          "type": "date"
+        },
+        "allegation_duration": {
+          "analyzer": "standard",
+          "type": "integer"
+        },
+        "allegation_chairperson": {
+          "analyzer": "standard",
+          "type": "string"
+        },
+        "referrerDets": {
+          "analyzer": "standard",
+          "type": "string"
+        }
+      }
+    }
+
+}

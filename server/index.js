@@ -44,7 +44,11 @@ const getQuery = (params) => {
             from: dateRange[0],
             format: "dd/MM/yyyy||yyyy"
           }
-        },
+        }
+      }
+    );
+    queryBuilder.body.query.bool.must.push(
+      {
         range: {
           [params.query.dateRange.split('-val-').pop()]: {
             to: dateRange[1],
@@ -53,6 +57,8 @@ const getQuery = (params) => {
         }
       }
     );
+    
+    //{"filter":{"bool":{"must":[{"range":{"dateReceived":{"gte":"2016-08-28T12:00:00.000Z"}}},{"range":{"dateReceived":{"lte":"2017-08-31T01:00:00.000Z"}}}]}}}
     console.log(JSON.stringify(queryBuilder));
   }
   if (params.query.query !== undefined) {

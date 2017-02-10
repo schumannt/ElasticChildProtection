@@ -57,19 +57,10 @@ const getQuery = (params) => {
         }
       }
     );
-    
-    //{"filter":{"bool":{"must":[{"range":{"dateReceived":{"gte":"2016-08-28T12:00:00.000Z"}}},{"range":{"dateReceived":{"lte":"2017-08-31T01:00:00.000Z"}}}]}}}
-    console.log(JSON.stringify(queryBuilder));
   }
-  if (params.query.query !== undefined) {
+  if (params.query.wild !== undefined) {
     queryBuilder.body.query.bool.should.push(
-      { term: { ref: params.query.query } }
-    );
-    queryBuilder.body.query.bool.should.push(
-      { term: { staff_surname: params.query.query } }
-    );
-    queryBuilder.body.query.bool.should.push(
-      { term: { child_surname: params.query.query } }
+      { term: { _all: params.query.wild.toLowerCase() } }
     );
   }
   return queryBuilder;

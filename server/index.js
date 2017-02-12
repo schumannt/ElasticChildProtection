@@ -66,6 +66,8 @@ const getQuery = (params) => {
   return queryBuilder;
 };
 
+app.use(express.static('../app'));
+
 app.get('/get', (req, res) => {
   const query = getQuery(url.parse(req.url, true), queryBase);
   client.search(query).then((body) => {
@@ -113,7 +115,7 @@ app.post('/update', (req, res) => {
   });
 });
 
-app.get('/', (req, res) => {
+app.get('/info', (req, res) => {
   const message = 'Welcome to the elasticchildprotectionservice api.\n\n to query use ' +
     'with this same url add /get? and your query. \n for example: \n CURRENT_URL/get?ref=24863' +
     '\n CURRENT_URL/get?childSurname=smith&staffSurname=James' +

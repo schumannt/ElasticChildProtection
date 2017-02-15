@@ -14,7 +14,7 @@ export default class Header extends React.Component {
             <Title/>
           </div>
           <div className='header--right-content'>
-            <Link/>
+            <Link loggedIn={this.props.loggedIn} userName={this.props.userName}/>
           </div>
         </div>
       </header>

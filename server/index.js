@@ -72,8 +72,13 @@ app.get('/get', (req, res) => {
   const query = getQuery(url.parse(req.url, true), queryBase);
   client.search(query).then((body) => {
     const hits = body.hits.hits;
+    const response = {
+      total: body.hits.total,
+      pages:1,
+      results: hits.map(hit => hit._source)
+    };
     if (hits) {
-      res.send(hits.map(hit => hit._source));
+      res.send(response);
     } else {
       res.send('Sorry, no Results');
     }

@@ -16,12 +16,12 @@ export default class Header extends React.Component {
         </div>
       )
     }
-    const hi = `Welcome ${this.props.userName}`;
+    const helloMessage = `Welcome ${this.props.userName}`;
     return (
       <div className="header--right-content">
         <LinkItem classNamesUsed={"header--link-item header--link-item-clickable"} title={"About"}/>
         <LinkItem classNamesUsed={"header--link-item header--link-item-clickable"} title={"Log Out"}/>
-        <LinkItem classNamesUsed={"header--link-item"} title={hi}/>
+        <LinkItem classNamesUsed={"header--link-item"} title={helloMessage}/>
       </div>
     )
   }

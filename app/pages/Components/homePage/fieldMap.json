@@ -1,0 +1,99 @@
+[{
+  "name": "case_ref",
+  "type": "integer",
+  "max":12000000000000
+}, {
+  "name": "dateReceived",
+  "type": "date"
+}, {
+  "name": "dateOpened",
+  "type": "date"
+}, {
+  "name": "linkToCaseFile",
+  "type": "string"
+}, {
+  "name": "currentSituation",
+  "type": "string"
+}, {
+  "name": "child_surname",
+  "type": "string"
+}, {
+  "name": "child_firstName",
+  "type": "string"
+}, {
+  "name": "child_DOB",
+  "type": "date"
+}, {
+  "name": "child_gender",
+  "type": "string"
+}, {
+  "name": "child_ethnicity",
+  "type": "string"
+}, {
+  "name": "child_numOfChildrenInvolved",
+  "type": "integer",
+  "max":100
+}, {
+  "name": "child_numOfPreviousAllegations",
+  "type": "integer",
+  "max":100
+}, {
+  "name": "staff_numOfProfsInvolved",
+  "type": "string"
+}, {
+  "name": "staff_surname",
+  "type": "string"
+}, {
+  "name": "staff_firstName",
+  "type": "string"
+}, {
+  "name": "staff_DOB",
+  "type": "date"
+}, {
+  "name": "staff_gender",
+  "type": "string"
+}, {
+  "name": "staff_ethnicity",
+  "type": "string"
+}, {
+  "name": "staff_f",
+  "type": "string"
+}, {
+  "name": "staff_placeOfEmployment",
+  "type": "string"
+}, {
+  "name": "staff_numOfPreviousAllegations",
+  "type": "integer",
+  "max":100
+}, {
+  "name": "allegation_cat",
+  "type": "string"
+}, {
+  "name": "allegation_summary",
+  "type": "string"
+}, {
+  "name": "allegation_strategyMeeting",
+  "type": "boolean"
+}, {
+  "name": "allegation_outcome",
+  "type": "string"
+}, {
+  "name": "allegation_investigation",
+  "type": "string"
+}, {
+  "name": "allegation_other",
+  "type": "string"
+}, {
+  "name": "allegation_closeDate",
+  "type": "date"
+}, {
+  "name": "allegation_duration",
+  "type": "integer",
+  "max":100
+}, {
+  "name": "allegation_chairperson",
+  "type": "string"
+}, {
+  "name": "referrerDets",
+  "type": "string"
+}]

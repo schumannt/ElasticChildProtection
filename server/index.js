@@ -133,5 +133,5 @@ app.get('/info', (req, res) => {
 });
 
 const server = app.listen(8085, () => {
-  console.log(`Server Running on http;//localhost:${server.address().port}`);
+  console.log(`Server Running on http://localhost:${server.address().port}`);
 });

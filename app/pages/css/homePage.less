@@ -30,6 +30,10 @@
 }
 .homePage--search-close:hover{
   color: lightgrey;
+  cursor: pointer;
+}
+.homePage--search-close-add{
+  float:right;
 }
 
 .homePage--form {
@@ -93,6 +97,16 @@ td, th {
   text-align: center;
   color: white;
 }
+.homePage--search-result-table{
+  width: 100%;
+}
+
+.homePage--search-result-item:nth-child(odd){
+  background-color: white;
+}
+.homePage--search-result-item:hover{
+  background-color: lightgrey;
+}
 .homePage--bad{
   background-color: crimson;
 }
@@ -106,3 +120,23 @@ td, th {
   background-color: #3964C3;
 }
 
+/*
+ * Off Canvas at medium breakpoint
+ * --------------------------------------------------
+ */
+@media screen and (max-width: 48em) {
+  .homePage {
+    display: inline;
+  }
+
+}
+
+/*
+ * Off Canvas wider at sm breakpoint
+ * --------------------------------------------------
+ */
+@media screen and (max-width: 34em) {
+  .homePage {
+    display: inline;
+  }
+}

@@ -8,7 +8,7 @@ require('./../../css/styles');
 export default class Header extends React.Component {
   render(){
     return (
-      <header className='header'>
+      <header className='header header--basic'>
         <div className='header--wrapper'>
           <div className='header--left-content'>
             <Title/>

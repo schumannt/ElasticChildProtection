@@ -2,16 +2,15 @@ import React from 'react';
 import request from 'request';
 import Select from 'react-select';
 
+import SearchResults from './searchResultsPane';
+
 require('./../../css/styles');
 
 export default class RightTopPanel extends React.Component {
   
   constructor(props, context) {
     super(props, context);
-    
-    // most of the state is so we still have access to data
-    // during animations triggered by changing props
-    let searchTypes = [
+    const searchTypes = [
       { value: 'wildcard', label: 'wildcard'},
       { value: 'ref', label: 'case ref'},
       { value:'childSurname', label: 'childSurname'},
@@ -34,23 +33,21 @@ export default class RightTopPanel extends React.Component {
     return url;
   }
   
-  startSearch(e) {
+  startSearch(e, that) {
     e.preventDefault();
     const url = this.buildURL();
     const options = {
       uri: "http://localhost:8085/get?"+ url,
       method: 'GET'
     };
-    console.log(url);
-//  trigger request
+    //  trigger request
     request(options, function(err,response,body) {
-      console.log(body);
-      //BuildSearchResults
+      console.log(`hits: ${JSON.parse(body).total} first hit: ${JSON.parse(body).results[0].ref} ${JSON.parse(body).results[0].child_surname}-${JSON.parse(body).results[0].staff_surname} `);
+      that.setState({ searchResults:JSON.parse(body) });
     });
   };
   
   updateTable(i, key, val){
-    console.log(`${key} ${val}`);
     this.state.searchCriteria[i]= {field:key,text:val};
   }
   
@@ -70,7 +67,7 @@ export default class RightTopPanel extends React.Component {
     this.setState({ searchCriteria })
   }
   
-  classSearchWindow(i){
+  closeSearchWindow(i){
     let searchCriteria = this.state.searchCriteria;
     searchCriteria.splice(i,1);
     this.setState({ searchCriteria })
@@ -83,7 +80,9 @@ export default class RightTopPanel extends React.Component {
         <tbody>
         <tr>
           <td><b>#{numToDisplay}</b> Search Criteria</td>
-          <td className="homePage--search-close"><small onClick={e => this.classSearchWindow(i)}>Close</small></td>
+          <td className="homePage--search-close">
+            <small onClick={e => this.closeSearchWindow(i)}>Close</small>
+          </td>
         </tr>
         <tr>
           <td>
@@ -92,7 +91,8 @@ export default class RightTopPanel extends React.Component {
                    name="search"
                    placeholder="Search.."
                    ref={i}
-                   onChange={e => this.updateTable(i,this.state.searchCriteria[i].field, e.target.value)}/>
+                   onChange={e =>
+                     this.updateTable(i,this.state.searchCriteria[i].field, e.target.value)}/>
           </td><td>
             <Select
               onChange={e => this.updateField(e, i)}
@@ -107,13 +107,21 @@ export default class RightTopPanel extends React.Component {
       </table>);
   }
   
+  closeAllSearchWindow(){
+    const searchCriteria = [{field: this.state.searchTypeDefault, text:''}];
+    this.setState({ searchCriteria });
+  }
+  
   render(){
     return (
       <div className="homePage--right-top-panel">
         <form className="header--Form homePage--form homePage--search"
-              onSubmit={this.startSearch.bind(this)}>
+              onSubmit={e => this.startSearch(e,this)}>
           <h1>Search</h1>
           <span>You may search multiple fields</span>
+          <span className="homePage--search-close homePage--search-close-add">
+            <small onClick={this.closeAllSearchWindow.bind(this)}>Reset All</small>
+          </span>
           <h4>Wildcard Search</h4>
           {
             this.state.searchCriteria.map((search, i) => {
@@ -127,6 +135,7 @@ export default class RightTopPanel extends React.Component {
               onClick={this.addToSearchTable.bind(this)}/>
           </div>
           <div><input className="homePage--searchTables" type="submit" value="Go"/></div>
+          { this.state.searchResults ? <SearchResults resultList={this.state.searchResults} /> : null }
         </form>
       </div>
     )

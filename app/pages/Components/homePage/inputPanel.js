@@ -27,6 +27,13 @@ export default class LeftPanel extends React.Component {
           <td>{formName}</td>
           <td><input type="text" id={formName} onChange={this.inputChangeHandler.bind(this)}/></td>
         </tr>);
+      case 'text':
+        return (<tr className="homePage--table-row" key={i}>
+          <td>{formName}</td>
+          <td>
+            <textarea type="text" id={formName} onChange={this.inputChangeHandler.bind(this)} rows="6"></textarea>
+          </td>
+        </tr>);
       case 'date':
         return (<tr className="homePage--table-row" key={i}>
           <td>{formName}</td>

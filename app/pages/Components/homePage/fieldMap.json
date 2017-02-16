@@ -13,7 +13,7 @@
   "type": "string"
 }, {
   "name": "currentSituation",
-  "type": "string"
+  "type": "text"
 }, {
   "name": "child_surname",
   "type": "string"
@@ -70,19 +70,19 @@
   "type": "string"
 }, {
   "name": "allegation_summary",
-  "type": "string"
+  "type": "text"
 }, {
   "name": "allegation_strategyMeeting",
   "type": "boolean"
 }, {
   "name": "allegation_outcome",
-  "type": "string"
+  "type": "text"
 }, {
   "name": "allegation_investigation",
-  "type": "string"
+  "type": "text"
 }, {
   "name": "allegation_other",
-  "type": "string"
+  "type": "text"
 }, {
   "name": "allegation_closeDate",
   "type": "date"
@@ -95,5 +95,5 @@
   "type": "string"
 }, {
   "name": "referrerDets",
-  "type": "string"
+  "type": "text"
 }]

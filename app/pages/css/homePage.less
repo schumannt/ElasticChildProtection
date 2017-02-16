@@ -1,6 +1,5 @@
 .homePage {
-  margin: 0 auto;
-  padding: 10px;
+  padding: 50px;
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -11,9 +10,10 @@
   display: flex;
   -webkit-flex-direction: column;
   flex-direction: column;
+  margin-bottom: auto;
+  vertical-align: top;
 }
 .homePage--left-panel {
-  margin-bottom: 50px;
 }
 .homePage--input{
   background: #ecf0f1;
@@ -24,6 +24,14 @@
   -o-transition: 0.3s linear;
   transition: 0.3s linear;
 }
+.homePage--search-close{
+  color: darkgrey;
+  text-align: right;
+}
+.homePage--search-close:hover{
+  color: lightgrey;
+}
+
 .homePage--form {
   margin: auto;
   width: 80%;

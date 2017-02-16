@@ -13,21 +13,23 @@ export default class RightTopPanel extends React.Component {
     // during animations triggered by changing props
     let searchTypes = [
       { value: 'wildcard', label: 'wildcard'},
-      { value: 'case ref', label: 'case ref'},
-      { value:'child Surname', label: 'child Surname'},
-      { value:'staff Surname', label: 'staff Surname'},
-      { value:'date Range', label: 'date Range'}];
+      { value: 'ref', label: 'case ref'},
+      { value:'childSurname', label: 'childSurname'},
+      { value:'staffSurname', label: 'staffSurname'},
+      { value:'dateRange', label: 'dateRange'}];
+    const searchTypeDefault = searchTypes[0].value;
     this.state = {
       searchTypes,
-      searchCriteria: [{field: 'wildcard'}]
+      searchTypeDefault,
+      searchCriteria: [{field: searchTypeDefault}]
     };
   }
   
   buildURL(){
     // Build URL
     let url = '';
-    this.state.search.map((field) =>{
-      if(field.type!==undefined)url+=`&${field.type}=${field.value}`;
+    this.state.searchCriteria.map((searchQuery) =>{
+      if(searchQuery.field!==undefined)url+=`&${searchQuery.field}=${searchQuery.text}`;
     });
     return url;
   }
@@ -52,21 +54,35 @@ export default class RightTopPanel extends React.Component {
   }
   
   addToSearchTable(){
-    console.log("hey");
-    console.log(this.state.searchCriteria);
     let searchCriteria = this.state.searchCriteria;
-    searchCriteria.push({field: 'wildcard'})
+    let defaultSearchType = this.state.searchTypeDefault;
+    if(this.state.searchTypes[this.state.searchCriteria.length]){
+      defaultSearchType = this.state.searchTypes[this.state.searchCriteria.length].value;
+    }
+    searchCriteria.push({field: defaultSearchType});
+    this.setState({ searchCriteria })
+  }
+  
+  updateField(value, i){
+    let searchCriteria = this.state.searchCriteria;
+    searchCriteria[i].field=value;
+    this.setState({ searchCriteria })
+  }
+  
+  classSearchWindow(i){
+    let searchCriteria = this.state.searchCriteria;
+    searchCriteria.splice(i,1);
     this.setState({ searchCriteria })
   }
   
   buildSearchItems(i){
     const numToDisplay = i+1;
     return(
-      <table className="homePage--searchTables" key={i}>
+      <table className="homePage--searchTables flex-item" key={i}>
         <tbody>
         <tr>
           <td><b>#{numToDisplay}</b> Search Criteria</td>
-          <td><small>Close</small></td>
+          <td className="homePage--search-close"><small onClick={e => this.classSearchWindow(i)}>Close</small></td>
         </tr>
         <tr>
           <td>
@@ -80,9 +96,10 @@ export default class RightTopPanel extends React.Component {
           </td>
           <td>
             <Select
-              onChange={e => this.state.searchCriteria[i].field=e.target.value}
+              onChange={e => this.updateField(e, i)}
               options={this.state.searchTypes}
               simpleValue
+              index={i}
               value={this.state.searchCriteria[i].field}
             />
           </td>
@@ -93,7 +110,7 @@ export default class RightTopPanel extends React.Component {
   
   render(){
     return (
-      <div className="homePage--right-top-panel">ref
+      <div className="homePage--right-top-panel">
         <form className="header--Form homePage--form homePage--search" onSubmit={this.startSearch.bind(this)}>
           <h1>Search</h1>
           <span>You may search multiple fields</span>

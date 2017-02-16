@@ -16,7 +16,8 @@ export default class RightTopPanel extends React.Component {
       { value: 'ref', label: 'case ref'},
       { value:'childSurname', label: 'childSurname'},
       { value:'staffSurname', label: 'staffSurname'},
-      { value:'dateRange', label: 'dateRange'}];
+      { value:'dateRange', label: 'dateRange'}
+    ];
     const searchTypeDefault = searchTypes[0].value;
     this.state = {
       searchTypes,
@@ -26,7 +27,6 @@ export default class RightTopPanel extends React.Component {
   }
   
   buildURL(){
-    // Build URL
     let url = '';
     this.state.searchCriteria.map((searchQuery) =>{
       if(searchQuery.field!==undefined)url+=`&${searchQuery.field}=${searchQuery.text}`;
@@ -45,6 +45,7 @@ export default class RightTopPanel extends React.Component {
 //  trigger request
     request(options, function(err,response,body) {
       console.log(body);
+      //BuildSearchResults
     });
   };
   
@@ -91,10 +92,8 @@ export default class RightTopPanel extends React.Component {
                    name="search"
                    placeholder="Search.."
                    ref={i}
-                   value={this.state.searchCriteria[i].text}
                    onChange={e => this.updateTable(i,this.state.searchCriteria[i].field, e.target.value)}/>
-          </td>
-          <td>
+          </td><td>
             <Select
               onChange={e => this.updateField(e, i)}
               options={this.state.searchTypes}
@@ -111,7 +110,8 @@ export default class RightTopPanel extends React.Component {
   render(){
     return (
       <div className="homePage--right-top-panel">
-        <form className="header--Form homePage--form homePage--search" onSubmit={this.startSearch.bind(this)}>
+        <form className="header--Form homePage--form homePage--search"
+              onSubmit={this.startSearch.bind(this)}>
           <h1>Search</h1>
           <span>You may search multiple fields</span>
           <h4>Wildcard Search</h4>
@@ -121,11 +121,12 @@ export default class RightTopPanel extends React.Component {
             })
           }
           <div >
-            <input className="homePage--searchTables homePage--searchAdd" type="button" value="Add More Search Criteria" onClick={this.addToSearchTable.bind(this)}/>
+            <input className="homePage--searchTables homePage--searchAdd"
+              type="button"
+              value="Add More Search Criteria"
+              onClick={this.addToSearchTable.bind(this)}/>
           </div>
-          <div>
-          <input className="homePage--searchTables" type="submit" value="Go"/>
-          </div>
+          <div><input className="homePage--searchTables" type="submit" value="Go"/></div>
         </form>
       </div>
     )

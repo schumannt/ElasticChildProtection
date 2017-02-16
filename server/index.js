@@ -8,6 +8,11 @@ import queryBase from './queryBasic.json';  // Query DSL to construct /get queri
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 const client = new elasticsearch.Client({
   host: 'localhost:9200',
@@ -16,7 +21,6 @@ const client = new elasticsearch.Client({
 
 const getQuery = (params) => {
   const queryBuilder = queryBase;
-  // var ingredients = "chicken,basil"
   queryBuilder.body.query.bool.must = [];
   queryBuilder.body.query.bool.should = [];
   queryBuilder.body.query.bool.must_not = [];

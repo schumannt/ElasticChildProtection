@@ -12,44 +12,44 @@ export default class LeftPanel extends React.Component {
   }
   
   inputChangeHandler (event) {
-    this.setState({ newForm:{[event.target.id]: event.target.value }});
+    this.setState({[event.target.id]: event.target.value });
   }
   
   returnInputs(formType, formName, i){
     switch(formType) {
       case 'integer':
-        return (<tr className="homePage--table-row">
+        return (<tr className="homePage--table-row" key={i}>
           <td>{formName}</td><
-          td><input type="text" min="1" max="100" key={i} id={formName} onChange={this.inputChangeHandler.bind(this)}/></td>
+          td><input type="text" min="1" max="100" id={formName} onChange={this.inputChangeHandler.bind(this)}/></td>
         </tr>);
       case 'string':
-        return (<tr className="homePage--table-row">
+        return (<tr className="homePage--table-row" key={i}>
           <td>{formName}</td>
-          <td><input type="text" key={i} id={formName} onChange={this.inputChangeHandler.bind(this)}/></td>
+          <td><input type="text" id={formName} onChange={this.inputChangeHandler.bind(this)}/></td>
         </tr>);
       case 'date':
-        return (<tr className="homePage--table-row">
+        return (<tr className="homePage--table-row" key={i}>
           <td>{formName}</td>
-          <td><input type="date" key={i} id={formName} onChange={this.inputChangeHandler.bind(this)}/></td>
+          <td><input type="date" id={formName} onChange={this.inputChangeHandler.bind(this)}/></td>
         </tr>);
       case 'boolean':
-        return (<tr className="homePage--table-row">
+        return (<tr className="homePage--table-row" key={i}>
           <td>{formName}</td>
           <td>
-            <input type="checkbox" key={i} id={formName} onChange={this.inputChangeHandler.bind(this)}/>
+            <input type="checkbox" id={formName} onChange={this.inputChangeHandler.bind(this)}/>
           </td>
         </tr>);
       default:
-        return (<tr className="homePage--table-row">
+        return (<tr className="homePage--table-row" key={i}>
           <td>{formName}</td>
-          <td><input type="text" key={i} id={formName} onChange={this.inputChangeHandler.bind(this)}/></td>
+          <td><input type="text" id={formName} onChange={this.inputChangeHandler.bind(this)}/></td>
         </tr>);
     }
   }
   
   handleSubmit(e) {
     e.preventDefault();
-    console.log(this.state.newForm);
+    console.log(this.state);
   }
   
   render(){
@@ -61,9 +61,7 @@ export default class LeftPanel extends React.Component {
             <table>
               <tbody>
                 {
-                  fieldMap.map((form, i) => {
-                    return this.returnInputs(form.type,form.name, i);
-                  })
+                  fieldMap.map((form, i) => { return this.returnInputs(form.type,form.name, i) })
                 }
                 <tr><td><input type="submit" value="Submit"/></td></tr>
               </tbody>

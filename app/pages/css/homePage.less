@@ -17,7 +17,7 @@
 }
 .homePage--input{
   background: #ecf0f1;
-  border-radius: 10px;
+  border-radius: 5px;
   border: none;
   -webkit-transition: 0.3s linear;
   -moz-transition: 0.3s linear;
@@ -49,22 +49,41 @@ td, th {
 }
 
 .homePage--search-bar {
-  border-radius: 50px;
+  border-radius: 10px;
   margin: 5px;
-  width: 200px;
   padding:10px;
   -webkit-transition: width 0.4s ease-in-out;
   transition: width 0.4s ease-in-out;
+}
+.homePage--searchTables {
+  width: 100%;
+  border: solid lightgrey 1px;
+  border-radius: 5px;
+  border-style: inset;
+  padding: 5px;
+  margin: 5px;
+}
+
+.homePage--searchAdd {
+  background: #3964C3;
+  margin-top: 20px;
+  padding: 10px;
+  font-size: 20px;
+  display: block;
+  width: 100%;
+  border: none;
+  color: #fff;
+  border-radius: 5px;
 }
 /* When the input field gets focus, change its width to 100% */
 .homePage--search-bar:focus {
   width: 100%;
 }
 .homePage--dash-item {
-  border-radius: 50px;
-  width:30px;
-  height:30px;
+  border-radius: 100px;
+  padding:20px;
   text-align: center;
+  color: white;
 }
 .homePage--bad{
   background-color: crimson;
@@ -78,3 +97,4 @@ td, th {
 .homePage--great{
   background-color: #3964C3;
 }
+

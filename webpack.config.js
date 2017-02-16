@@ -35,5 +35,11 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin()
-  ]
+  ],
+  node: {
+    fs: "empty",
+    tls: "empty",
+    tls: "empty",
+    net: 'empty'
+  }
 };

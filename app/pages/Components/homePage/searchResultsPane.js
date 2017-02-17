@@ -1,8 +1,5 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 import CsvDownloader from 'react-csv-downloader';
-
-import fieldMap from './fieldMap.json';
-
 
 require('./../../css/styles');
 
@@ -11,7 +8,7 @@ export default class SearchResultsPane extends React.Component {
   constructor(props, context) {
     super(props, context);
     let fields = [];
-    fieldMap.map((r) => {
+    this.props.fieldMap.map((r) => {
       fields.push({
         id: r.name,
         displayName: r.name

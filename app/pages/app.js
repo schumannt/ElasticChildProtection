@@ -1,4 +1,7 @@
 import React from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import * as StoreActions from '../redux/store-action';
 
 import Header from './Components/header'
 import Footer from './Components/footer'
@@ -7,7 +10,13 @@ import HomePage from './Components/homePage'
 
 require('./css/styles');
 
-export default class App extends React.Component {
+export class App extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  static PropTypes = {
+    fieldMap: PropTypes.fieldMap.isRequired,
+  };
   
   isLoggedIn() { return true; }
   
@@ -26,3 +35,26 @@ export default class App extends React.Component {
     )
   }
 }
+
+
+
+function mapStateToProps(state) {
+  return {
+    counter: state.fieldMap
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(StoreActions, dispatch)
+  };
+}
+
+// App.PropTypes = {
+//   fieldMap: PropTypes.fieldMap.isRequired,
+// };
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);

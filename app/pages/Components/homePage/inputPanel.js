@@ -1,18 +1,22 @@
 import React from 'react';
 
-import fieldMap from './fieldMap.json';
-
 require('./../../css/styles');
 
 export default class LeftPanel extends React.Component {
   
   constructor(props, context) {
     super(props, context);
-    this.state={};
+    // this.state={ field: this.props.fieldMap };
   }
   
-  inputChangeHandler (event) {
-    this.setState({[event.target.id]: event.target.value });
+  static PropTypes = {
+    fieldMap: PropTypes.object.isRequired
+  };
+    
+    
+    inputChangeHandler (event) {
+    // this.setState({[event.target.id]: event.target.value });
+    this.props.actions.updateFields({[event.target.id]: event.target.value });
   }
   
   returnInputs(formType, formName, i){
@@ -68,7 +72,7 @@ export default class LeftPanel extends React.Component {
             <table>
               <tbody>
                 {
-                  fieldMap.map((form, i) => { return this.returnInputs(form.type,form.name, i) })
+                  this.props.fieldMap.map((form, i) => { return this.returnInputs(form.type,form.name, i) })
                 }
                 <tr><td><input type="submit" value="Submit"/></td></tr>
               </tbody>

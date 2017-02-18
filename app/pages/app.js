@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { Component, PropTypes }  from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as StoreActions from '../redux/store-action';
+import * as StoreActions from '../redux/input-action';
 
 import Header from './Components/header'
 import Footer from './Components/footer'
@@ -14,33 +14,36 @@ export class App extends React.Component {
   constructor(props) {
     super(props);
   }
+  
   static PropTypes = {
-    fieldMap: PropTypes.fieldMap.isRequired,
+    fieldMap: PropTypes.object.isRequired,
+    inputValues: PropTypes.object.isRequired,
+    actions: PropTypes.object.isRequired
   };
   
   isLoggedIn() { return true; }
   
-  areTheyLoggedIn() {
-    if (this.isLoggedIn()) return <HomePage/>;
+  areTheyLoggedIn(actions) {
+    if (this.isLoggedIn()) return <HomePage actions={actions}/>;
     return  <LogIn/>;
   }
   
   render(){
+    const { actions } = this.props;
     return (
       <div>
         <Header loggedIn={this.isLoggedIn()} userName={'patrick'}/>
-        {this.areTheyLoggedIn()}
+        {this.areTheyLoggedIn(actions)}
         <Footer/>
       </div>
     )
   }
 }
 
-
-
 function mapStateToProps(state) {
   return {
-    counter: state.fieldMap
+    fieldMap: state.fieldMap,
+    inputValues: state.inputValues
   };
 }
 
@@ -49,10 +52,6 @@ function mapDispatchToProps(dispatch) {
     actions: bindActionCreators(StoreActions, dispatch)
   };
 }
-
-// App.PropTypes = {
-//   fieldMap: PropTypes.fieldMap.isRequired,
-// };
 
 export default connect(
   mapStateToProps,

@@ -8,13 +8,14 @@ require('./../../css/styles');
 
 export default class HomePage extends React.Component {
   render(){
+    const { actions } = this.props;
     return (
       <div className="homePage">
         <div>
-          <SearchPanel/>
+          <SearchPanel actions={actions}/>
           <StatsPanel/>
         </div>
-        <InputPanel/>
+        <InputPanel actions={actions}/>
       </div>
     )
   }

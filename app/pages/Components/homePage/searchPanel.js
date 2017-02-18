@@ -11,7 +11,7 @@ export default class RightTopPanel extends React.Component {
   constructor(props, context) {
     super(props, context);
     const searchTypes = [
-      { value: 'wildcard', label: 'wildcard'},
+      // { value: 'wildcard', label: 'wildcard'},
       { value: 'ref', label: 'case ref'},
       { value:'childSurname', label: 'childSurname'},
       { value:'staffSurname', label: 'staffSurname'},
@@ -30,6 +30,7 @@ export default class RightTopPanel extends React.Component {
     this.state.searchCriteria.map((searchQuery) =>{
       if(searchQuery.field!==undefined)url+=`&${searchQuery.field}=${searchQuery.text}`;
     });
+    console.log(url);
     return url;
   }
   
@@ -129,13 +130,13 @@ export default class RightTopPanel extends React.Component {
             })
           }
           <div >
-            <input className="homePage--searchTables homePage--searchAdd"
+            <input className="but homePage--searchTables homePage--searchAdd"
               type="button"
               value="Add More Search Criteria"
               onClick={this.addToSearchTable.bind(this)}/>
           </div>
-          <div><input className="homePage--searchTables" type="submit" value="Go"/></div>
-          { this.state.searchResults ? <SearchResults resultList={this.state.searchResults} /> : null }
+          <div><input className="but homePage--searchTables" type="submit" value="Go"/></div>
+          { this.state.searchResults ? <SearchResults resultList={this.state.searchResults} actions={this.props.actions}/> : null }
         </form>
       </div>
     )

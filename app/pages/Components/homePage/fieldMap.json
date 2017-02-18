@@ -1,5 +1,5 @@
 [{
-  "name": "case_ref",
+  "name": "ref",
   "type": "integer",
   "max":12000000000000
 }, {

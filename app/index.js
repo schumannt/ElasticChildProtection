@@ -1,5 +1,17 @@
 import React from 'react';
 import { render } from 'react-dom';
-import App from './pages/app';
+import { createStore, applyMiddleware } from 'redux';
+import fieldMap from './pages/Components/homePage/fieldMap.json';
 
-render( <App />, document.getElementById('app'));
+
+import Root from './pages/Root';
+import reducers from './redux/input-reducer';
+
+const initData = { fieldMap, inputValues:{}};
+
+const store = createStore(
+  reducers,
+  initData
+);
+
+render( <Root store={store} />, document.getElementById('app'));

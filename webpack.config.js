@@ -13,7 +13,7 @@ module.exports = {
         use: [
           {
             loader: 'babel-loader',
-            options:{
+            options: {
               presets: ['react', 'es2015', 'stage-0'],
               plugins: [
                 'transform-decorators-legacy'
@@ -22,7 +22,7 @@ module.exports = {
           }
         ]
       },
-      { test: /\.less/, loader: "style-loader!css-loader" }
+      { test: /\.less/, loader: 'style-loader!css-loader' }
     ]
   },
   resolve: {
@@ -37,9 +37,9 @@ module.exports = {
     new webpack.NoEmitOnErrorsPlugin()
   ],
   node: {
-    fs: "empty",
-    tls: "empty",
-    tls: "empty",
+    fs: 'empty',
+    tls: 'empty',
+    tls: 'empty',
     net: 'empty'
   }
 };

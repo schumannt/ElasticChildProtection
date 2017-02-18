@@ -3,7 +3,7 @@ import React from 'react';
 require('./../../css/styles');
 
 export default class LogIn extends React.Component {
-  render(){
+  render() {
     return (
       <div className="login">
         <fieldset className="login--Form">
@@ -14,6 +14,6 @@ export default class LogIn extends React.Component {
           <input type="submit" value="Login" />
         </fieldset>
       </div>
-    )
+    );
   }
 }

@@ -7,16 +7,16 @@ import StatsPanel from './statsPanel';
 require('./../../css/styles');
 
 export default class HomePage extends React.Component {
-  render(){
+  render() {
     const { actions } = this.props;
     return (
       <div className="homePage">
         <div>
-          <SearchPanel actions={actions}/>
-          <StatsPanel/>
+          <SearchPanel actions={actions} />
+          <StatsPanel />
         </div>
-        <InputPanel actions={actions}/>
+        <InputPanel actions={actions} />
       </div>
-    )
+    );
   }
 }

@@ -1,11 +1,11 @@
 import React, { Component, PropTypes }  from 'react';
 import { connect } from 'react-redux';
+import request from 'request';
+
 
 require('./../../css/styles');
 
 const mapStateToProps = (state) => {
-  console.log("here");
-  console.log(state);
   return {
     fieldMap: state.fieldMap,
     inputValues: state.inputValues
@@ -68,7 +68,20 @@ export default class InputPanel extends Component {
   
   handleSubmit(e) {
     e.preventDefault();
-    console.log(this.props.inputValue);
+    console.log(this.props.inputValues);
+    const options = {
+      uri: `http://localhost:8085/update`,
+      method: 'POST',
+      body: this.props.inputValues,
+      json: true,
+    };
+    //  trigger request
+    request(options, (err, response, body) => {
+      console.log(err);
+      console.log(response);
+      console.log(body);
+    });
+    
   }
   
   componentWillReceiveProps(nextProps) {
@@ -80,19 +93,21 @@ export default class InputPanel extends Component {
           return;
         }
         this.refs[form.name].value = nextProps.inputValues[form.name];
+      }else{
+        this.refs[form.name].value = null;
       }
     });
-    if(!nextProps.inputValues){
-      this.setState({ isNew: false });
-    }
-    console.log(this.state.isNew);
+  }
+  
+  resetForm(){
+    this.props.actions.resetFields();
   }
   
   render(){
     return (
-      <div className="homePage--left-panel">
+      <div className="homePage--input-panel">
         <div className="homePage--input">
-          <form className="header--Form homePage--form" onSubmit={this.handleSubmit.bind(this)}>
+          <form className="global--panel homePage--form" onSubmit={this.handleSubmit.bind(this)}>
             <h1>New Case</h1>
             <table>
               <tbody>
@@ -103,7 +118,7 @@ export default class InputPanel extends Component {
                 }
                 <tr>
                   <td><input className="but" type="submit" value="Submit"/></td>
-                  <td><input className="but reverse-but" type="button" value="Reset"/></td>
+                  <td><input className="but reverse-but" type="button" onClick={this.resetForm.bind(this)} value="Reset"/></td>
                 </tr>
               </tbody>
             </table>

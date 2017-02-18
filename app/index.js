@@ -7,11 +7,11 @@ import fieldMap from './pages/Components/homePage/fieldMap.json';
 import Root from './pages/Root';
 import reducers from './redux/input-reducer';
 
-const initData = { fieldMap, inputValues:{}};
+const initData = { fieldMap, inputValues: {} };
 
 const store = createStore(
   reducers,
   initData
 );
 
-render( <Root store={store} />, document.getElementById('app'));
+render(<Root store={store} />, document.getElementById('app'));

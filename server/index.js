@@ -8,9 +8,9 @@ import queryBase from './queryBasic.json';  // Query DSL to construct /get queri
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   next();
 });
 
@@ -39,14 +39,14 @@ const getQuery = (params) => {
       { term: { ref: params.query.ref } }
     );
   }
-  if (params.query.dateRange !== undefined){
-    let dateRange = params.query.dateRange.split('-val-').shift().split('-');
+  if (params.query.dateRange !== undefined) {
+    const dateRange = params.query.dateRange.split('-val-').shift().split('-');
     queryBuilder.body.query.bool.must.push(
       {
         range: {
           [params.query.dateRange.split('-val-').pop()]: {
             from: dateRange[0],
-            format: "dd/MM/yyyy||yyyy"
+            format: 'dd/MM/yyyy||yyyy'
           }
         }
       }
@@ -56,7 +56,7 @@ const getQuery = (params) => {
         range: {
           [params.query.dateRange.split('-val-').pop()]: {
             to: dateRange[1],
-            format: "dd/MM/yyyy||yyyy"
+            format: 'dd/MM/yyyy||yyyy'
           }
         }
       }
@@ -78,7 +78,7 @@ app.get('/get', (req, res) => {
     const hits = body.hits.hits;
     const response = {
       total: body.hits.total,
-      pages:1,
+      pages: 1,
       results: hits.map(hit => hit._source)
     };
     if (hits) {
@@ -113,7 +113,23 @@ app.post('/update', (req, res) => {
     index: 'allegations',
     type: 'allegation',
     id: req.body.ref,
-    body:{ doc: req.body }
+    body: { doc: req.body, doc_as_upsert: true }
+  }, (elasticErr, elasticRes) => {
+    if (elasticErr) {
+      res.status(elasticRes.status);
+      res.send(`Failed to update: ${elasticRes.error}`);
+      return;
+    }
+    res.send('Successful');
+  });
+});
+
+app.post('/update', (req, res) => {
+  client.update({
+    index: 'allegations',
+    type: 'allegation',
+    id: req.body.ref,
+    body: { doc: req.body }
   }, (elasticErr, elasticRes) => {
     if (elasticErr) {
       res.status(elasticRes.status);

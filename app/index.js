@@ -5,7 +5,7 @@ import fieldMap from './pages/Components/homePage/fieldMap.json';
 
 
 import Root from './pages/Root';
-import reducers from './redux/input-reducer';
+import reducers from './pages/redux/input-reducer';
 
 const initData = { fieldMap, inputValues: {} };
 

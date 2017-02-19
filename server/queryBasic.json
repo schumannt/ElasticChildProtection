@@ -1,13 +1,14 @@
 {
-    "size": 99,
-    "index": "allegations",
-    "body": {
-        "query": {
-            "bool": {
-                "must": [],
-                "should":[],
-                "must_not":[]
-            }
-        }
+  "size": 10,
+  "from": 0,
+  "index": "allegations",
+  "body": {
+    "query": {
+      "bool": {
+          "must": [],
+          "should":[],
+          "must_not":[]
+      }
     }
+  }
 }

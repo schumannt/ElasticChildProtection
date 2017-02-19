@@ -68,7 +68,6 @@ export default class InputPanel extends Component {
   
   handleSubmit(e) {
     e.preventDefault();
-    console.log(this.props.inputValues);
     const options = {
       uri: `http://localhost:8085/update`,
       method: 'POST',
@@ -77,9 +76,10 @@ export default class InputPanel extends Component {
     };
     //  trigger request
     request(options, (err, response, body) => {
-      console.log(err);
       console.log(response);
-      console.log(body);
+      if(response.statusCode===200){
+        this.props.actions.resetFields();
+      }
     });
     
   }
@@ -108,7 +108,8 @@ export default class InputPanel extends Component {
       <div className="homePage--input-panel">
         <div className="homePage--input">
           <form className="global--panel homePage--form" onSubmit={this.handleSubmit.bind(this)}>
-            <h1>New Case</h1>
+            <img className="global--img global--vertical" width="40" src={require('./../../assets/notepad.png')}/>
+            <span><i>Allegations</i></span>
             <table>
               <tbody>
                 {

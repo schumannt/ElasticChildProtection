@@ -24,6 +24,12 @@ const getQuery = (params) => {
   queryBuilder.body.query.bool.must = [];
   queryBuilder.body.query.bool.should = [];
   queryBuilder.body.query.bool.must_not = [];
+  if (params.query.offset !== undefined) {
+    queryBuilder.from = params.query.offset;
+  }
+  if (params.query.limit !== undefined) {
+    queryBuilder.size = params.query.limit;
+  }
   if (params.query.childSurname !== undefined) {
     queryBuilder.body.query.bool.must.push(
       { term: { child_surname: params.query.childSurname.toLowerCase() } }
@@ -78,7 +84,7 @@ app.get('/get', (req, res) => {
     const hits = body.hits.hits;
     const response = {
       total: body.hits.total,
-      pages: 1,
+      pages: Math.round(body.hits.total/queryBase.size),
       results: hits.map(hit => hit._source)
     };
     if (hits) {

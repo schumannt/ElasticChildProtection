@@ -1,7 +1,7 @@
 import React, { Component, PropTypes }  from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as StoreActions from '../redux/input-action';
+import * as StoreActions from './redux/input-action';
 
 import Header from './Components/header'
 import Footer from './Components/footer'
